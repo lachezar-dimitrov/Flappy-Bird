@@ -7,7 +7,7 @@ const flappyImg = new Image();
 flappyImg.src = 'assets/flappy_dunk.png'
 
 // Game constants
-const FLAP_SPEED = -5;
+const FLAP_SPEED = -3;
 const BIRD_WIDTH = 40;
 const BIRD_HEIGHT = 30;
 const PIPE_WIDTH = 50;
@@ -15,7 +15,7 @@ const PIPE_GAP = 125;
 
 // Bird variables
 let birdX = 50;
-let birdY = 50;
+let birdY = 0;
 let birdVelocity = 0;
 let birdAcceleration = 0.1;
 
@@ -35,6 +35,12 @@ document.body.onkeyup = function(e) {
     if (e.code == "Space") {
         birdVelocity = FLAP_SPEED;
     }
+}
+
+document.body.onclick = function(e) {
+    // if (e.code == "Space") {
+        birdVelocity = FLAP_SPEED;
+    // }
 }
 
 // Lets us restart the game if we hit game-over
