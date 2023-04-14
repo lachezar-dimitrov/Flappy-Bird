@@ -5,6 +5,8 @@ body {
 }
 
 canvas {
+    /* width: 90%; */
+    /* height: 88vh; */
     border: 5px solid #2e2e2e;
     border-radius: 10px;
     display: block;
@@ -13,8 +15,24 @@ canvas {
     background-image: url('assets/Flappy_Bird_Background.png');
     background-size: contain;
     background-repeat: repeat-x;
+    background-repeat: round;
     z-index: 1;
 }
+
+@media screen and (min-width: 600px) {
+    canvas {
+        width: 50%;
+        height: 76vh;
+    }
+}
+
+/* @media screen and (min-width: 1250px) {
+    canvas {
+        width: 60%;
+        height: 86vh;
+    }
+} */
+
 
 .backdrop-blur {
     filter: blur(5px);

@@ -37,10 +37,8 @@ document.body.onkeyup = function(e) {
     }
 }
 
-document.body.onclick = function(e) {
-    // if (e.code == "Space") {
+document.body.onclick = function() {
         birdVelocity = FLAP_SPEED;
-    // }
 }
 
 // Lets us restart the game if we hit game-over
@@ -143,7 +141,7 @@ function loop() {
     ctx.clearRect(0, 0, canvas.clientWidth, canvas.height);
 
     // Draw Flappy Bird
-    ctx.drawImage(flappyImg, birdX, birdY);
+    ctx.drawImage(flappyImg, birdX, birdY, 50, 45);
 
     // Draw Pipes
     ctx.fillStyle = '#333';
