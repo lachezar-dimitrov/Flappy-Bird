@@ -37,6 +37,24 @@ const routes = {
             module.gameLoop(ctx, canvas);
         });
     },
+    "/game-over": () => {
+        app.innerHTML = `
+      <h1>Game Over</h1>
+      <p>Your final score: ${score}</p>
+      <button id="restart">Restart</button>
+    `;
+
+        document.getElementById("restart").addEventListener("click", () => navigateTo("/mario"));
+    },
+    "/level-complete": () => {
+        app.innerHTML = `
+      <h1>Level Complete!</h1>
+      <p>Your score: ${score}</p>
+      <button id="next-level">Next Level</button>
+    `;
+
+        document.getElementById("next-level").addEventListener("click", () => navigateTo("/mario")); // Placeholder for next level
+    },
 };
 
 // Navigation function

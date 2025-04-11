@@ -1,6 +1,6 @@
 # **Product Requirements Document (PRD)**
 
-## **Project Title:** Transformation of Flappy Bird Clone into 2D Super Mario Game
+## **Project Title:** 2D Super Mario-Inspired Platformer Game
 
 **Prepared for:** Mr. Dimitrov  
 **Prepared by:** ChatGPT  
@@ -10,163 +10,94 @@
 
 ## **1. Objective**
 
-Transform the existing Flappy Bird JavaScript game into a 2D side-scrolling Super Mario-style platformer using vanilla JavaScript, HTML5 Canvas, and modular CSS. The refactored project will adopt a standardised structure with a `package.json` file for managing dependencies. No backend or database integration is required at this stage.
+Design a browser-based 2D side-scrolling platformer game inspired by the Super Mario franchise. The user should experience a charming, responsive, and immersive game world, reminiscent of classic pixel-based platformers, with increasing levels of challenge and rewarding collectibles.
 
 ---
 
-## **2. Scope and Features**
+## **2. Game Experience and Features**
 
-### **2.1 Core Gameplay Features**
+### **2.1 Gameplay Overview**
 
-- **Side-Scrolling Platformer**: Replace vertical-scrolling mechanics with horizontal side-scrolling movement.
-- **Player Character**: Mario sprite capable of:
-    - Walking left/right
-    - Jumping under the influence of gravity
-    - Crouching (optional)
-- **Environment**:
-    - Static ground tiles
-    - Background scenery (sky, clouds, hills)
-    - Collision objects (e.g., pipes, blocks)
-- **Enemies**:
-    - Goomba enemies that patrol predefined paths
-    - Player can jump on Goombas to defeat them
-- **Collectibles**:
-    - Animated coins that increase the score
-    - Power-up mushrooms (optional in first version)
+- The player navigates a pixelated hero across horizontally scrolling levels.
+- Gameplay includes jumping over gaps, avoiding or defeating enemies, collecting coins, and discovering power-ups.
+- Levels are themed (e.g., grassy plains, underground, castle) and progressively increase in difficulty.
 
-### **2.2 Controls**
+### **2.2 Player Mechanics**
 
-- Arrow keys or WASD for movement
-- Spacebar for jumping
-- "R" key to restart the game after game over
+- **Movement**: Walk left/right using keyboard input.
+- **Jumping**: Tap to hop over obstacles and onto platforms.
+- **Enemy Interaction**: Jumping on enemies defeats them; collision otherwise causes death.
+- **Power-ups**: Transform the character (e.g., grow larger, shoot fireballs).
+- **Damage Recovery**: Power-ups offer one-hit protection.
 
-### **2.3 Game Loop Mechanics**
+### **2.3 Visual and Audio Presentation**
 
-- The `requestAnimationFrame` API will govern the continuous rendering loop
-- Each frame will update the game state (e.g., gravity, collisions, movement) and render all visible elements
+- Retro pixel art, colourful tiles, and animated backgrounds.
+- Background parallax scrolling adds depth.
+- Engaging sound design including:
+    - Coin chime
+    - Jump and power-up effects
+    - Victory and Game Over themes
 
-### **2.4 UI Elements**
+### **2.4 Levels and Objectives**
 
-- Score display in the top-left corner
-- Game Over screen showing the final score with a restart button
-- Pause/Resume toggle (optional in the initial release)
+- **Level 1**: Gentle introduction to movement, jumping, and collecting coins.
+- **Level 2**: Introduces enemies and moving platforms.
+- **Completion**: Each level ends with a celebratory animation (e.g., reaching a flagpole).
 
-### **2.5 Audio (Phase 2 Optional Enhancements)**
+### **2.5 User Interface**
 
-- Jump sound
-- Coin collection sound
-- Death sound
+- Top screen HUD showing:
+    - **Coins** collected
+    - **Score**
+    - **Remaining Lives**
+    - **Time Limit** (optional)
+- Menu screens:
+    - **Start Game**
+    - **Game Over** with Restart
+    - **Level Complete** with score breakdown
 
----
+### **2.6 Controls**
 
-## **3. Technical Specifications**
-
-### **3.1 Project Structure (Post-Conversion)**
-
-```plaintext
-/mario-game
-|-- /assets
-|   |-- /images
-|   |   |-- mario.png
-|   |   |-- goomba.png
-|   |   |-- tileset.png
-|   |-- /audio (optional)
-|-- /src
-|   |-- game.js
-|   |-- player.js
-|   |-- enemy.js
-|   |-- level.js
-|   |-- input.js
-|-- index.html
-|-- style.css
-|-- package.json
-```
-
-### **3.2 Dependencies**
-
-Initialise the project with `npm init`. Install the following development dependencies:
-
-- `live-server` – for local development (`npm install --save-dev live-server`)
-- _(Optional)_ `parcel` or `vite` – for modular bundling and enhanced development workflows
-
-#### **Example scripts block in `package.json`:**
-
-```json
-"scripts": {
-  "start": "live-server"
-}
-```
+- **Arrow Keys / WASD** – Move
+- **Space / Z** – Jump
+- **R** – Restart level
+- **P** – Pause/Resume
 
 ---
 
-## **4. Graphics and Aesthetics**
+## **3. Stretch Goals**
 
-### **4.1 Art Style**
-
-- Pixel art style inspired by the original Super Mario Bros.
-- All assets must be open-source or created specifically for this project
-- Optional: Smooth parallax background scrolling for visual depth
-
-### **4.2 Level Design**
-
-- Basic tutorial level containing:
-    - A clear start point
-    - Coin placements
-    - Enemy (Goomba) obstacles
-    - Flagpole to signify level completion
+- Overworld map for selecting levels
+- Boss fights at the end of world stages
+- Water levels and vertical scrolling caves
+- Time Attack mode for speedrunners
+- Save progress locally
+- Responsive controls for mobile browsers
 
 ---
 
-## **5. Stretch Goals (Post-MVP Enhancements)**
+## **4. Development Milestones**
 
-- Multiple playable levels
-- Power-ups (Super Mario state, Fire Flower)
-- Checkpoints throughout levels
-- Multiple lives system
-- Animated UI components
-- Integrated sound effects and background music
-- Mobile-friendly controls and responsive layout
+1. **Week 1** – Implement character movement, jumping, and basic level layout
+2. **Week 2** – Introduce enemies, interactions, and collectibles
+3. **Week 3** – Design multiple levels and polish game physics
+4. **Week 4** – Finalise UI, visual effects, and conduct usability testing
 
 ---
 
-## **6. Out of Scope**
+## **5. Acceptance Criteria**
 
-- User authentication
-- Online leaderboards
-- Multiplayer functionality
-- Backend infrastructure or cloud-based storage
-
----
-
-## **7. Milestones**
-
-1. **Week 1** – Establish project structure; implement Mario movement and gravity
-2. **Week 2** – Integrate enemies and handle collision detection
-3. **Week 3** – Implement coin collection and scoring system
-4. **Week 4** – Create Game Over screen, restart logic, and polish core mechanics
+- Fluid, responsive player controls
+- Visually pleasing and clearly structured level design
+- Immediate and intuitive feedback from enemy collisions and collectibles
+- All levels must be completable without game-breaking bugs
+- User interface must clearly communicate game state
 
 ---
 
-## **8. Acceptance Criteria**
+## **6. Next Steps**
 
-- Player can move and jump fluidly within the canvas
-- Horizontal scrolling functions seamlessly as Mario progresses
-- Collisions with blocks, ground, and enemies behave as expected
-- Score increases appropriately upon collecting coins or defeating Goombas
-- Game terminates upon collision with an enemy or falling off-screen
-
----
-
-## **9. Risks and Mitigations**
-
-- **Collision Detection Complexity**: Use axis-aligned bounding boxes for initial simplicity
-- **Asset Legality**: Ensure all sprites are either original or fully open-source
-- **Performance Concerns**: Optimise rendering to reduce draw calls; avoid memory leaks in the game loop
-
----
-
-## **10. Next Steps**
-
-- Approve this PRD for immediate implementation
-- Initiate project structure and set up `package.json`
-- Begin development of Mario character mechanics and basic level rendering
+- Confirm this PRD for implementation
+- Begin visual asset production and character animation pipeline
+- Design levels and input initial tileset layout
