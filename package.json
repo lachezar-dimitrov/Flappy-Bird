@@ -1,0 +1,19 @@
+{
+  "name": "game-collection",
+  "version": "1.0.0",
+  "description": "A collection of games including Flappy Bird and Mario Game.",
+  "main": "index.js",
+  "scripts": {
+    "start": "live-server"
+  },
+  "keywords": [
+    "games",
+    "flappy-bird",
+    "mario"
+  ],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "live-server": "^1.2.2"
+  }
+}
