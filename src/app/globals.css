@@ -2,36 +2,45 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-    --foreground-rgb: 0, 0, 0;
-    --background-start-rgb: 214, 219, 220;
-    --background-end-rgb: 255, 255, 255;
-}
-
-@media (prefers-color-scheme: dark) {
-    :root {
-        --foreground-rgb: 255, 255, 255;
-        --background-start-rgb: 0, 0, 0;
-        --background-end-rgb: 0, 0, 0;
-    }
-}
-
+/* Migrated styles from root style.css */
 body {
-    font-family: "Arial", sans-serif;
-    margin: 0;
-    height: 100 vh;
-    text-align: center;
-    color: rgb(var(--foreground-rgb));
-    background: linear-gradient(to bottom, transparent, rgb(var(--background-end-rgb))) rgb(var(--background-start-rgb));
+    @apply bg-gradient-to-r from-[#73c8a9] to-[#373b44] font-['Press_Start_2P'];
 }
 
-h5 {
-    font-weight: 400;
-    padding: 0 20px;
+canvas {
+    @apply border-4 border-[#2e2e2e] rounded-lg block mx-auto my-6 shadow-md;
+    background-image: url("/assets/Flappy_Bird_Background.png");
+    background-size: contain;
+    background-repeat: round;
+    z-index: 1;
 }
 
-@layer utilities {
-    .text-balance {
-        text-wrap: balance;
+@media (min-width: 600px) {
+    canvas {
+        @apply w-1/2 h-[75vh];
     }
+}
+
+.backdrop-blur {
+    @apply filter blur-sm;
+}
+
+#end-menu {
+    @apply hidden mx-auto my-12 w-48 p-5 text-center bg-white rounded shadow-md absolute left-1/2 transform -translate-x-1/2 translate-y-1/2 z-[1000];
+}
+
+#score-display {
+    @apply text-white text-2xl text-center drop-shadow-md;
+}
+
+button {
+    @apply bg-[#2e2e2e] border-none rounded text-white cursor-pointer text-lg px-6 py-3 shadow-md transition-all ease-in-out;
+}
+
+button:hover {
+    @apply bg-[#333] -translate-y-0.5 shadow-sm;
+}
+
+#game-container {
+    @apply flex justify-center items-center w-[800px] h-[400px] mx-auto my-12 border-2 border-black bg-[#5c94fc];
 }
