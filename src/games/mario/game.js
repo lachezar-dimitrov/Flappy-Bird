@@ -1,9 +1,9 @@
+import { GameEngine } from "../../engine/engine.js";
 import { handleInput } from "./input.js";
 import { renderLevel } from "./level.js";
 import { Goomba } from "./enemy.js";
 import { MARIO_WIDTH, MARIO_HEIGHT } from "./player.js";
 
-const GRAVITY = 0.5;
 const POWER_UP_DURATION = 5000; // 5 seconds
 
 let coinsCollected = 0;
@@ -42,6 +42,8 @@ const levels = [
 let currentLevelIndex = 0;
 
 export function gameLoop(ctx, canvas) {
+    const engine = new GameEngine(canvas, ctx);
+
     const mario = {
         x: 50,
         y: canvas.height - MARIO_HEIGHT - 50,
@@ -52,42 +54,32 @@ export function gameLoop(ctx, canvas) {
         onGround: true,
         hasPowerUp: false,
         powerUpEndTime: 0,
+        update() {
+            handleInput(this);
+            engine.applyGravity(this);
+        },
+        draw(ctx) {
+            ctx.fillStyle = this.hasPowerUp ? "blue" : "red";
+            ctx.fillRect(this.x, this.y, this.width, this.height);
+        },
     };
+
+    engine.addEntity(mario);
 
     const levelData = levels[currentLevelIndex];
 
-    let scrollOffset = 0;
-
-    function checkCollision(rect1, rect2) {
-        return (
-            rect1.x < rect2.x + rect2.width &&
-            rect1.x + rect1.width > rect2.x &&
-            rect1.y < rect2.y + rect2.height &&
-            rect1.y + rect1.height > rect2.y
-        );
-    }
-
     function loop() {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        engine.clearCanvas();
 
-        renderLevel(ctx, canvas, scrollOffset, levelData);
+        renderLevel(ctx, canvas, engine.scrollOffset, levelData);
         renderHUD(ctx, canvas);
 
-        handleInput(mario);
-
-        mario.velocityY += GRAVITY;
-        mario.y += mario.velocityY;
-
-        if (mario.y > canvas.height - mario.height - 50) {
-            mario.y = canvas.height - mario.height - 50;
-            mario.velocityY = 0;
-            mario.onGround = true;
-        }
+        engine.renderEntities();
 
         levelData.coins = levelData.coins.filter((coin) => {
             if (
-                checkCollision(mario, {
-                    x: coin.x - scrollOffset,
+                engine.checkCollision(mario, {
+                    x: coin.x - engine.scrollOffset,
                     y: coin.y,
                     width: 20,
                     height: 20,
@@ -113,10 +105,7 @@ export function gameLoop(ctx, canvas) {
             return;
         }
 
-        ctx.fillStyle = mario.hasPowerUp ? "blue" : "red";
-        ctx.fillRect(mario.x, mario.y, mario.width, mario.height);
-
-        scrollOffset += mario.speed;
+        engine.updateScrollOffset(mario.speed);
 
         requestAnimationFrame(loop);
     }
