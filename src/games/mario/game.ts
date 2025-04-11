@@ -27,9 +27,11 @@ export function startGame(
     canvas: HTMLCanvasElement,
     mario: Mario,
     levelData: LevelData,
-    enemies: Goomba[]
+    enemies: Goomba[],
 ): void {
-    const engine = new GameEngine(() => {
+    const engine = new GameEngine(canvas, ctx);
+
+    engine.start(() => {
         handleInput(mario);
         renderLevel(ctx, canvas, mario.x, levelData);
         enemies.forEach((enemy) => {
@@ -38,6 +40,4 @@ export function startGame(
         });
         renderHUD(ctx, canvas);
     });
-
-    engine.start();
 }

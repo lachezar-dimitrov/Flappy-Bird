@@ -1,5 +1,11 @@
 export class GameEngine {
-    constructor(canvas, ctx) {
+    private canvas: HTMLCanvasElement;
+    private ctx: CanvasRenderingContext2D;
+    private entities: any[];
+    private gravity: number;
+    private scrollOffset: number;
+
+    constructor(canvas: HTMLCanvasElement, ctx: CanvasRenderingContext2D) {
         this.canvas = canvas;
         this.ctx = ctx;
         this.entities = [];
@@ -7,11 +13,11 @@ export class GameEngine {
         this.scrollOffset = 0;
     }
 
-    addEntity(entity) {
+    addEntity(entity: any): void {
         this.entities.push(entity);
     }
 
-    applyGravity(entity) {
+    applyGravity(entity: { velocityY: number; y: number; height: number; onGround?: boolean }): void {
         entity.velocityY += this.gravity;
         entity.y += entity.velocityY;
 
@@ -23,7 +29,10 @@ export class GameEngine {
         }
     }
 
-    checkCollision(rect1, rect2) {
+    checkCollision(
+        rect1: { x: number; y: number; width: number; height: number },
+        rect2: { x: number; y: number; width: number; height: number },
+    ): boolean {
         return (
             rect1.x < rect2.x + rect2.width &&
             rect1.x + rect1.width > rect2.x &&
@@ -32,18 +41,16 @@ export class GameEngine {
         );
     }
 
-    renderEntities() {
-        this.entities.forEach((entity) => {
-            entity.update();
-            entity.draw(this.ctx);
-        });
-    }
-
-    clearCanvas() {
-        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-    }
-
-    updateScrollOffset(speed) {
+    updateScrollOffset(speed: number): void {
         this.scrollOffset += speed;
+    }
+
+    start(updateCallback: () => void): void {
+        const loop = () => {
+            this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+            updateCallback();
+            requestAnimationFrame(loop);
+        };
+        loop();
     }
 }
