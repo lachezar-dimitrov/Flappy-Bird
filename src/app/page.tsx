@@ -3,7 +3,7 @@
 import Game from "@/containers/Game/Game";
 import AppStore from "@/store/AppStore";
 import { Button, Container, Heading } from "@/ui/UIComponents";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 
 export default function Home() {
     const store = new AppStore();
