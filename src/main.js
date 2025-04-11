@@ -21,11 +21,35 @@ const routes = {
   },
   "/flappy-bird": () => {
     app.innerHTML = '<h1>Flappy Bird</h1><div id="game-container"></div>';
-    loadScript("games/flappy/index.js");
+
+    // Create and append the canvas for the Flappy Bird game
+    const canvas = document.createElement("canvas");
+    canvas.width = 800;
+    canvas.height = 400;
+    document.getElementById("game-container").appendChild(canvas);
+
+    const ctx = canvas.getContext("2d");
+
+    // Load and start the Flappy Bird game
+    import("./games/flappy/index.js").then((module) => {
+      module.gameLoop(ctx, canvas);
+    });
   },
   "/mario": () => {
     app.innerHTML = '<h1>Mario</h1><div id="game-container"></div>';
-    loadScript("games/mario/index.js");
+
+    // Create and append the canvas for the Mario game
+    const canvas = document.createElement("canvas");
+    canvas.width = 800;
+    canvas.height = 400;
+    document.getElementById("game-container").appendChild(canvas);
+
+    const ctx = canvas.getContext("2d");
+
+    // Load and start the Mario game
+    import("./games/mario/game.js").then((module) => {
+      module.gameLoop(ctx, canvas);
+    });
   },
 };
 
