@@ -4,8 +4,7 @@
   "description": "A collection of games including Flappy Bird and Mario Game.",
   "main": "index.js",
   "scripts": {
-    "start": "live-server",
-    "start:mario": "cd mario-game && live-server"
+    "start": "live-server"
   },
   "keywords": [
     "games",

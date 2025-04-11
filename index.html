@@ -7,14 +7,9 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <h1>Welcome to the Game Menu</h1>
-    <button onclick="loadGame('flappy')">Play Flappy Bird</button>
-    <button onclick="loadGame('mario')">Play Mario Game</button>
-
-    <script>
-      function loadGame(game) {
-        window.location.href = `games/${game}/index.html`;
-      }
-    </script>
+    <div id="app">
+      <!-- Content will be dynamically injected here -->
+    </div>
+    <script src="src/main.js"></script>
   </body>
 </html>
