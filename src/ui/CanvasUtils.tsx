@@ -1,4 +1,6 @@
-import React, { useEffect, useRef } from "react";
+"use client";
+
+import { FC, ReactNode, useEffect, useRef } from "react";
 
 type CanvasProps = {
     width?: number;
@@ -6,7 +8,7 @@ type CanvasProps = {
     id?: string;
 };
 
-export const Canvas: React.FC<CanvasProps> = ({ width = 800, height = 400, id }) => {
+export const Canvas: FC<CanvasProps> = ({ width = 800, height = 400, id }) => {
     return (
         <canvas
             id={id}
@@ -19,10 +21,10 @@ export const Canvas: React.FC<CanvasProps> = ({ width = 800, height = 400, id })
 
 type ClearContainerProps = {
     containerId: string;
-    children?: React.ReactNode;
+    children?: ReactNode;
 };
 
-export const ClearContainer: React.FC<ClearContainerProps> = ({ containerId, children }) => {
+export const ClearContainer: FC<ClearContainerProps> = ({ containerId, children }) => {
     const containerRef = useRef<HTMLDivElement | null>(null);
 
     useEffect(() => {
