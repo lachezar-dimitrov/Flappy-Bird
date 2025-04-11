@@ -1,6 +1,5 @@
 "use client";
 
-import React from "react";
 import classNames from "classnames";
 import Player from "@/store/models/Player";
 

@@ -1,4 +1,18 @@
-export function renderLevel(ctx, canvas, scrollOffset, levelData) {
+export interface Coin {
+    x: number;
+    y: number;
+}
+
+export interface LevelData {
+    coins: Coin[];
+}
+
+export function renderLevel(
+    ctx: CanvasRenderingContext2D,
+    canvas: HTMLCanvasElement,
+    scrollOffset: number,
+    levelData: LevelData
+): void {
     // Draw the background (sky)
     ctx.fillStyle = "#87CEEB"; // Sky blue
     ctx.fillRect(0, 0, canvas.width, canvas.height);
@@ -7,7 +21,13 @@ export function renderLevel(ctx, canvas, scrollOffset, levelData) {
     const backgroundImage = new Image();
     backgroundImage.src = "assets/mario_background.png"; // Placeholder for retro pixel art background
     ctx.drawImage(backgroundImage, -scrollOffset % canvas.width, 0, canvas.width, canvas.height);
-    ctx.drawImage(backgroundImage, canvas.width - (scrollOffset % canvas.width), 0, canvas.width, canvas.height);
+    ctx.drawImage(
+        backgroundImage,
+        canvas.width - (scrollOffset % canvas.width),
+        0,
+        canvas.width,
+        canvas.height
+    );
 
     // Draw the ground
     ctx.fillStyle = "#654321"; // Brown color for the ground

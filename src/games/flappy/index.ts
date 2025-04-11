@@ -1,4 +1,4 @@
-import { getOrCreateCanvas, clearContainer } from "../../ui/canvasUtils.js";
+import { getOrCreateCanvas, clearContainer } from "../../ui/canvasUtils.jsx";
 
 // Utility function to initialize the Flappy Bird game
 export function initializeFlappyBirdGame(containerId) {
