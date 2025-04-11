@@ -11,22 +11,51 @@ export default function Home() {
     };
 
     return (
-        <main className="flex min-h-screen flex-col items-center justify-between p-24">
+        <main className="flex min-h-screen flex-col items-center justify-between p-24 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 text-white">
             <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">
-                <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
+                <Heading level={1} className="text-4xl font-bold mb-8 text-center">
                     Welcome to the Ultimate Game Hub!
-                </p>
+                </Heading>
             </div>
 
             <Container>
-                <Heading level={1}>Welcome to the Game Menu</Heading>
-                <div className="navigation-container flex flex-col gap-4">
-                    <Button onClick={() => navigateTo("/flappy-bird")}>Play Flappy Bird</Button>
-                    <Button onClick={() => navigateTo("/mario")}>Play Mario</Button>
-                    <Button onClick={() => navigateTo("/tic-tac-toe")}>Tic Tac Toe</Button>
-                    <Button onClick={() => navigateTo("/chess")}>Chess</Button>
-                    <Button onClick={() => navigateTo("/leaderboard")}>Leaderboard</Button>
-                    <Button onClick={() => navigateTo("/settings")}>Settings</Button>
+                <div className="navigation-container flex gap-6 items-center">
+                    <Button
+                        onClick={() => navigateTo("/flappy-bird")}
+                        className="px-6 py-3 bg-blue-600 hover:bg-blue-700 rounded-lg shadow-lg"
+                    >
+                        Play Flappy Bird
+                    </Button>
+                    <Button
+                        onClick={() => navigateTo("/mario")}
+                        className="px-6 py-3 bg-green-600 hover:bg-green-700 rounded-lg shadow-lg"
+                    >
+                        Play Mario
+                    </Button>
+                    <Button
+                        onClick={() => navigateTo("/tic-tac-toe")}
+                        className="px-6 py-3 bg-yellow-600 hover:bg-yellow-700 rounded-lg shadow-lg"
+                    >
+                        Tic Tac Toe
+                    </Button>
+                    <Button
+                        onClick={() => navigateTo("/chess")}
+                        className="px-6 py-3 bg-red-600 hover:bg-red-700 rounded-lg shadow-lg"
+                    >
+                        Chess
+                    </Button>
+                    <Button
+                        onClick={() => navigateTo("/leaderboard")}
+                        className="px-6 py-3 bg-purple-600 hover:bg-purple-700 rounded-lg shadow-lg"
+                    >
+                        Leaderboard
+                    </Button>
+                    <Button
+                        onClick={() => navigateTo("/settings")}
+                        className="px-6 py-3 bg-pink-600 hover:bg-pink-700 rounded-lg shadow-lg"
+                    >
+                        Settings
+                    </Button>
                 </div>
             </Container>
         </main>

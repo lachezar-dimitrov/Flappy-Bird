@@ -1,10 +1,12 @@
 import { PropsWithChildren } from "react";
 
+type ClassNameProps<T> = T & { className?: string };
+
 type ButtonProps = {
     onClick: () => void;
 };
 
-export const Button: React.FC<PropsWithChildren<ButtonProps>> = ({ children, onClick }) => (
+export const Button: React.FC<PropsWithChildren<ClassNameProps<ButtonProps>>> = ({ children, onClick }) => (
     <button onClick={onClick}>{children}</button>
 );
 
@@ -19,7 +21,7 @@ type HeadingProps = {
     level?: number;
 };
 
-export const Heading: React.FC<PropsWithChildren<HeadingProps>> = ({ children, level = 1 }) => {
+export const Heading: React.FC<PropsWithChildren<ClassNameProps<HeadingProps>>> = ({ children, level = 1 }) => {
     const Tag = `h${level}` as keyof JSX.IntrinsicElements;
     return <Tag>{children}</Tag>;
 };
