@@ -6,3 +6,11 @@ export function createCanvas(width = 800, height = 400, id = "") {
     if (id) canvas.id = id;
     return canvas;
 }
+
+// Utility function to remove all child elements from a container
+export function clearContainer(containerId) {
+    const container = document.getElementById(containerId);
+    while (container.firstChild) {
+        container.removeChild(container.firstChild);
+    }
+}
