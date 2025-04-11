@@ -1,32 +1,32 @@
 body {
-  margin: 0;
-  padding: 0;
-  background-color: #87ceeb; /* Sky blue background */
-  font-family: Arial, sans-serif;
-  overflow: hidden;
+    margin: 0;
+    padding: 0;
+    background-color: #87ceeb; /* Sky blue background */
+    font-family: Arial, sans-serif;
+    overflow: hidden;
 }
 
 #game-container {
-  position: relative;
-  width: 800px;
-  height: 400px;
-  margin: 50px auto;
-  border: 2px solid #000;
-  background-color: #5c94fc; /* Lighter blue for the game area */
+    position: relative;
+    width: 800px;
+    height: 400px;
+    margin: 50px auto;
+    border: 2px solid #000;
+    background-color: #5c94fc; /* Lighter blue for the game area */
 }
 
 canvas {
-  display: block;
-  margin: 0 auto;
-  background-color: #a3d977; /* Green ground */
+    display: block;
+    margin: 0 auto;
+    background-color: #a3d977; /* Green ground */
 }
 
 #score-display {
-  position: absolute;
-  top: 10px;
-  left: 10px;
-  color: #fff;
-  font-size: 20px;
-  font-weight: bold;
-  text-shadow: 1px 1px 2px #000;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    color: #fff;
+    font-size: 20px;
+    font-weight: bold;
+    text-shadow: 1px 1px 2px #000;
 }

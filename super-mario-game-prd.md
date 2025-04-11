@@ -20,19 +20,19 @@ Transform the existing Flappy Bird JavaScript game into a 2D side-scrolling Supe
 
 - **Side-Scrolling Platformer**: Replace vertical-scrolling mechanics with horizontal side-scrolling movement.
 - **Player Character**: Mario sprite capable of:
-  - Walking left/right
-  - Jumping under the influence of gravity
-  - Crouching (optional)
+    - Walking left/right
+    - Jumping under the influence of gravity
+    - Crouching (optional)
 - **Environment**:
-  - Static ground tiles
-  - Background scenery (sky, clouds, hills)
-  - Collision objects (e.g., pipes, blocks)
+    - Static ground tiles
+    - Background scenery (sky, clouds, hills)
+    - Collision objects (e.g., pipes, blocks)
 - **Enemies**:
-  - Goomba enemies that patrol predefined paths
-  - Player can jump on Goombas to defeat them
+    - Goomba enemies that patrol predefined paths
+    - Player can jump on Goombas to defeat them
 - **Collectibles**:
-  - Animated coins that increase the score
-  - Power-up mushrooms (optional in first version)
+    - Animated coins that increase the score
+    - Power-up mushrooms (optional in first version)
 
 ### **2.2 Controls**
 
@@ -110,10 +110,10 @@ Initialise the project with `npm init`. Install the following development depend
 ### **4.2 Level Design**
 
 - Basic tutorial level containing:
-  - A clear start point
-  - Coin placements
-  - Enemy (Goomba) obstacles
-  - Flagpole to signify level completion
+    - A clear start point
+    - Coin placements
+    - Enemy (Goomba) obstacles
+    - Flagpole to signify level completion
 
 ---
 
