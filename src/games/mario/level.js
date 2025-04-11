@@ -34,4 +34,17 @@ export function renderLevel(ctx, canvas, scrollOffset, levelData) {
     ctx.arc(330 - scrollOffset * 0.5, 80, 35, 0, Math.PI * 2);
     ctx.arc(360 - scrollOffset * 0.5, 80, 25, 0, Math.PI * 2);
     ctx.fill();
+
+    // Load and draw Mario, Mushroom, and Tree assets
+    const marioImage = new Image();
+    marioImage.src = "assets/mario.png";
+    ctx.drawImage(marioImage, 50, canvas.height - 150, 50, 50);
+
+    const mushroomImage = new Image();
+    mushroomImage.src = "assets/mushroom.png";
+    ctx.drawImage(mushroomImage, 200 - scrollOffset, canvas.height - 100, 40, 40);
+
+    const treeImage = new Image();
+    treeImage.src = "assets/tree.png";
+    ctx.drawImage(treeImage, 400 - scrollOffset, canvas.height - 150, 80, 100);
 }
