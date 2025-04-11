@@ -1,9 +1,12 @@
+import { PropsWithChildren } from "react";
+
 type ButtonProps = {
-    text: string;
     onClick: () => void;
 };
 
-export const Button: React.FC<ButtonProps> = ({ text, onClick }) => <button onClick={onClick}>{text}</button>;
+export const Button: React.FC<PropsWithChildren<ButtonProps>> = ({ children, onClick }) => (
+    <button onClick={onClick}>{children}</button>
+);
 
 type ContainerProps = {
     children: React.ReactNode;
@@ -13,11 +16,10 @@ type ContainerProps = {
 export const Container: React.FC<ContainerProps> = ({ children, id }) => <div id={id}>{children}</div>;
 
 type HeadingProps = {
-    text: string;
     level?: number;
 };
 
-export const Heading: React.FC<HeadingProps> = ({ text, level = 1 }) => {
+export const Heading: React.FC<PropsWithChildren<HeadingProps>> = ({ children, level = 1 }) => {
     const Tag = `h${level}` as keyof JSX.IntrinsicElements;
-    return <Tag>{text}</Tag>;
+    return <Tag>{children}</Tag>;
 };

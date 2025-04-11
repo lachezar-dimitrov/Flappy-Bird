@@ -1,9 +1,10 @@
-import { getOrCreateCanvas, clearContainer } from "../../ui/canvasUtils.jsx";
-
 // Utility function to initialize the Flappy Bird game
-export function initializeFlappyBirdGame(containerId) {
+export function initializeFlappyBirdGame(containerId: string) {
     // Clear the game container before creating a new canvas
-    clearContainer(containerId);
+    const container = document.getElementById(containerId);
+    if (container) {
+        container.innerHTML = "";
+    }
 
     // Use the utility function to ensure only one canvas is created
     const canvas = getOrCreateCanvas(containerId, "game-canvas", 800, 400);
