@@ -1,4 +1,5 @@
-// SPA Routing and Dynamic Content Rendering
+import { createButton, createContainer, createHeading } from "./ui/uiComponents.js";
+import { clearContainer, createCanvas } from "./ui/canvasUtils.js";
 
 // Cache DOM elements
 const app = document.getElementById("app");
@@ -6,29 +7,35 @@ const app = document.getElementById("app");
 // Routes configuration
 const routes = {
     "/": () => {
-        app.innerHTML = `
-      <h1>Welcome to the Game Menu</h1>
-      <button id="flappy-bird">Play Flappy Bird</button>
-      <button id="mario">Play Mario</button>
-    `;
+        clearContainer("app");
+        const heading = createHeading("Welcome to the Game Menu", 1);
+        const flappyBirdButton = createButton("Play Flappy Bird", () => navigateTo("/flappy-bird"));
+        const marioButton = createButton("Play Mario", () => navigateTo("/mario"));
 
-        document.getElementById("flappy-bird").addEventListener("click", () => navigateTo("/flappy-bird"));
-        document.getElementById("mario").addEventListener("click", () => navigateTo("/mario"));
+        const container = createContainer([heading, flappyBirdButton, marioButton]);
+        app.appendChild(container);
     },
     "/flappy-bird": () => {
-        app.innerHTML = '<h1>Flappy Bird</h1><div id="game-container"></div>';
+        clearContainer("app");
+        const heading = createHeading("Flappy Bird", 1);
+        const gameContainer = createContainer([], "game-container");
+
+        app.appendChild(heading);
+        app.appendChild(gameContainer);
 
         // Initialize the Flappy Bird game
         initializeFlappyBirdGame("game-container");
     },
     "/mario": () => {
-        app.innerHTML = '<h1>Mario</h1><div id="game-container"></div>';
+        clearContainer("app");
+        const heading = createHeading("Mario", 1);
+        const gameContainer = createContainer([], "game-container");
 
-        // Create and append the canvas for the Mario game
-        const canvas = document.createElement("canvas");
-        canvas.width = 800;
-        canvas.height = 400;
-        document.getElementById("game-container").appendChild(canvas);
+        app.appendChild(heading);
+        app.appendChild(gameContainer);
+
+        const canvas = createCanvas(800, 400);
+        gameContainer.appendChild(canvas);
 
         const ctx = canvas.getContext("2d");
 
@@ -38,22 +45,22 @@ const routes = {
         });
     },
     "/game-over": () => {
-        app.innerHTML = `
-      <h1>Game Over</h1>
-      <p>Your final score: ${score}</p>
-      <button id="restart">Restart</button>
-    `;
+        clearContainer("app");
+        const heading = createHeading("Game Over", 1);
+        const scoreDisplay = createHeading(`Your final score: ${score}`, 2);
+        const restartButton = createButton("Restart", () => navigateTo("/mario"));
 
-        document.getElementById("restart").addEventListener("click", () => navigateTo("/mario"));
+        const container = createContainer([heading, scoreDisplay, restartButton]);
+        app.appendChild(container);
     },
     "/level-complete": () => {
-        app.innerHTML = `
-      <h1>Level Complete!</h1>
-      <p>Your score: ${score}</p>
-      <button id="next-level">Next Level</button>
-    `;
+        clearContainer("app");
+        const heading = createHeading("Level Complete!", 1);
+        const scoreDisplay = createHeading(`Your score: ${score}`, 2);
+        const nextLevelButton = createButton("Next Level", () => navigateTo("/mario")); // Placeholder for next level
 
-        document.getElementById("next-level").addEventListener("click", () => navigateTo("/mario")); // Placeholder for next level
+        const container = createContainer([heading, scoreDisplay, nextLevelButton]);
+        app.appendChild(container);
     },
 };
 
@@ -67,14 +74,6 @@ function navigateTo(path) {
 function renderRoute(path) {
     const route = routes[path] || routes["/"];
     route();
-}
-
-// Utility to dynamically load scripts
-function loadScript(src) {
-    const script = document.createElement("script");
-    script.src = src;
-    script.onload = () => console.log(`${src} loaded`);
-    document.body.appendChild(script);
 }
 
 // Handle browser navigation

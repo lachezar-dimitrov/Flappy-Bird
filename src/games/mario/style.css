@@ -12,6 +12,8 @@
 
 canvas {
     display: block;
+    width: 800px; /* Set a fixed wide aspect ratio */
+    height: 400px; /* Maintain the wide aspect ratio */
     border: 2px solid #000;
     border-radius: 10px;
     background-color: #a3d977; /* Green ground */
