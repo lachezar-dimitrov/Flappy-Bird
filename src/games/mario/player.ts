@@ -22,5 +22,5 @@ export const mario: Mario = {
 };
 
 export function drawMario(ctx: CanvasRenderingContext2D, mario: Mario, marioImage: HTMLImageElement): void {
-    ctx.drawImage(marioImage, mario.x, mario.y - 15, mario.width, mario.height);
+    ctx.drawImage(marioImage, mario.x, mario.y, mario.width, mario.height);
 }

@@ -1,9 +1,18 @@
+type Rectangle = {
+    x: number;
+    y: number;
+    width: number;
+    height: number;
+};
+
+type Entity = {};
+
 export class GameEngine {
     private canvas: HTMLCanvasElement;
     private ctx: CanvasRenderingContext2D;
-    private entities: any[];
+    private entities: Entity[];
     private gravity: number;
-    private scrollOffset: number;
+    public scrollOffset: number;
 
     constructor(canvas: HTMLCanvasElement, ctx: CanvasRenderingContext2D) {
         this.canvas = canvas;
@@ -13,7 +22,7 @@ export class GameEngine {
         this.scrollOffset = 0;
     }
 
-    addEntity(entity: any): void {
+    addEntity(entity: Entity): void {
         this.entities.push(entity);
     }
 
@@ -22,22 +31,19 @@ export class GameEngine {
         entity.y += entity.velocityY;
 
         // Prevent entity from falling below the ground
-        if (entity.y > this.canvas.height - entity.height - 50) {
-            entity.y = this.canvas.height - entity.height - 50;
+        if (entity.y > this.canvas.height - entity.height - 30) {
+            entity.y = this.canvas.height - entity.height - 30;
             entity.velocityY = 0;
             entity.onGround = true;
         }
     }
 
-    checkCollision(
-        rect1: { x: number; y: number; width: number; height: number },
-        rect2: { x: number; y: number; width: number; height: number },
-    ): boolean {
+    checkCollision(rectangleOne: Rectangle, rectangleTwo: Rectangle): boolean {
         return (
-            rect1.x < rect2.x + rect2.width &&
-            rect1.x + rect1.width > rect2.x &&
-            rect1.y < rect2.y + rect2.height &&
-            rect1.y + rect1.height > rect2.y
+            rectangleOne.x < rectangleTwo.x + rectangleTwo.width &&
+            rectangleOne.x + rectangleOne.width > rectangleTwo.x &&
+            rectangleOne.y < rectangleTwo.y + rectangleTwo.height &&
+            rectangleOne.y + rectangleOne.height > rectangleTwo.y
         );
     }
 
