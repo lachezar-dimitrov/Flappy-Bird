@@ -29,8 +29,6 @@ export function renderLevel(
         background: backgroundImage,
     } = images;
 
-    // Draw sky background color
-    ctx.fillStyle = "#87CEEB";
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 
     // Draw parallax scrolling background

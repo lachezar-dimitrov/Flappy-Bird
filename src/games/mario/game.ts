@@ -4,6 +4,7 @@ import { Goomba } from "./enemy";
 import { handleInput, initializeInputListeners } from "./input";
 import { LevelData, renderLevel } from "./level";
 import { drawMario, Mario } from "./player";
+import { renderHUD } from "./hud";
 
 const POWER_UP_DURATION = 5000; // 5 seconds
 
@@ -11,17 +12,6 @@ let coinsCollected = 0;
 let score = 0;
 let lives = 3;
 let startTime = Date.now();
-
-function renderHUD(ctx: CanvasRenderingContext2D, canvas: HTMLCanvasElement): void {
-    ctx.fillStyle = "#000";
-    ctx.font = "16px Arial";
-    ctx.fillText(`Coins: ${coinsCollected}`, 10, 20);
-    ctx.fillText(`Score: ${score}`, 10, 40);
-    ctx.fillText(`Lives: ${lives}`, 10, 60);
-
-    const elapsedTime = Math.floor((Date.now() - startTime) / 1000);
-    ctx.fillText(`Time: ${elapsedTime}s`, canvas.width - 100, 20);
-}
 
 export function startGame(
     ctx: CanvasRenderingContext2D,
@@ -42,20 +32,21 @@ export function startGame(
         // Handle input
         handleInput(mario);
 
+        // Update scroll offset to move the game in the right direction
+        if (mario.x > canvas.width / 2) {
+            engine.updateScrollOffset(mario.speed);
+        }
+
         // Render level, enemies, and Mario
         renderLevel(ctx, canvas, engine.scrollOffset, levelData, images);
-
-        // Update scroll offset
         enemies.forEach((enemy) => {
             enemy.update();
             enemy.draw(ctx, images.goomba);
         });
-
-        // Check for collisions with coins
         drawMario(ctx, mario, images.mario);
 
         // Render HUD
-        renderHUD(ctx, canvas);
+        renderHUD(ctx, canvas, coinsCollected, score, lives, startTime);
     }
 
     initializeInputListeners();
