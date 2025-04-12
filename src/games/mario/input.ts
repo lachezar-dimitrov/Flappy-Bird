@@ -4,6 +4,7 @@ interface Mario {
     speed: number;
     velocityY: number;
     onGround: boolean;
+    direction?: string;
 }
 
 const keys: Record<string, boolean> = {};
@@ -27,9 +28,11 @@ export function initializeInputListeners(): void {
 export function handleInput(mario: Mario, keysConfig = DEFAULT_KEYS): void {
     if (keysConfig.left.some((key) => keys[key])) {
         mario.x -= mario.speed;
+        mario.direction = "left"; // Update direction to left
     }
     if (keysConfig.right.some((key) => keys[key])) {
         mario.x += mario.speed;
+        mario.direction = "right"; // Update direction to right
     }
     if (keysConfig.jump.some((key) => keys[key]) && mario.onGround) {
         mario.velocityY = -10; // Jump velocity
