@@ -1,3 +1,5 @@
+import { createImage } from "../../utils/imageUtils";
+
 export interface Coin {
     x: number;
     y: number;
@@ -6,6 +8,12 @@ export interface Coin {
 export interface LevelData {
     coins: Coin[];
 }
+
+const groundImage = createImage("assets/mario/grass-block.png");
+const coinImage = createImage("assets/mario/coin.png");
+const marioImage = createImage("assets/mario/player.png");
+const mushroomImage = createImage("assets/mario/mushroom.png");
+const treeImage = createImage("assets/mario/tree.png");
 
 export function renderLevel(
     ctx: CanvasRenderingContext2D,
@@ -18,9 +26,7 @@ export function renderLevel(
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 
     // Parallax scrolling background
-    const backgroundImage = new Image();
-    backgroundImage.src = "assets/mario/background.png"; // Placeholder for retro pixel art background
-    // Ensure the background image maintains the correct aspect ratio
+    const backgroundImage = createImage("assets/mario/background.png");
     backgroundImage.onload = () => {
         const aspectRatio = backgroundImage.width / backgroundImage.height;
         const targetHeight = canvas.width / aspectRatio;
@@ -28,16 +34,18 @@ export function renderLevel(
         ctx.drawImage(backgroundImage, canvas.width - (scrollOffset % canvas.width), 0, canvas.width, targetHeight);
     };
 
-    // Draw the ground
-    ctx.fillStyle = "#654321"; // Brown color for the ground
-    ctx.fillRect(0, canvas.height - 50, canvas.width, 50);
+    // Draw the ground using the grass-block image
+    groundImage.onload = () => {
+        for (let x = 0; x < canvas.width; x += 50) {
+            ctx.drawImage(groundImage, x - (scrollOffset % canvas.width), canvas.height - 50, 50, 50);
+        }
+    };
 
-    // Draw coins
-    ctx.fillStyle = "gold";
+    // Draw coins using the coin image
     levelData.coins.forEach((coin) => {
-        ctx.beginPath();
-        ctx.arc(coin.x - scrollOffset, coin.y, 10, 0, Math.PI * 2);
-        ctx.fill();
+        coinImage.onload = () => {
+            ctx.drawImage(coinImage, coin.x - scrollOffset, coin.y, 20, 20);
+        };
     });
 
     // Add some placeholder clouds
@@ -54,16 +62,8 @@ export function renderLevel(
     ctx.arc(360 - scrollOffset * 0.5, 80, 25, 0, Math.PI * 2);
     ctx.fill();
 
-    // Load and draw Mario, Mushroom, and Tree assets
-    const marioImage = new Image();
-    marioImage.src = "assets/mario.png";
+    // Draw Mario, Mushroom, and Tree assets
     ctx.drawImage(marioImage, 50, canvas.height - 150, 50, 50);
-
-    const mushroomImage = new Image();
-    mushroomImage.src = "assets/mushroom.png";
     ctx.drawImage(mushroomImage, 200 - scrollOffset, canvas.height - 100, 40, 40);
-
-    const treeImage = new Image();
-    treeImage.src = "assets/tree.png";
     ctx.drawImage(treeImage, 400 - scrollOffset, canvas.height - 150, 80, 100);
 }

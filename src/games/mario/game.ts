@@ -1,8 +1,8 @@
 import { GameEngine } from "../../engine/engine";
-import { handleInput } from "./input";
-import { renderLevel, LevelData } from "./level";
 import { Goomba } from "./enemy";
-import { Mario } from "./player";
+import { handleInput } from "./input";
+import { LevelData, renderLevel } from "./level";
+import { drawMario, Mario } from "./player";
 
 const POWER_UP_DURATION = 5000; // 5 seconds
 
@@ -34,6 +34,7 @@ export function startGame(
     engine.start(() => {
         handleInput(mario);
         renderLevel(ctx, canvas, mario.x, levelData);
+        drawMario(ctx, mario);
         enemies.forEach((enemy) => {
             enemy.update();
             enemy.draw(ctx);

@@ -1,3 +1,5 @@
+import { createImage } from "../../utils/imageUtils";
+
 export class Goomba {
     x: number;
     y: number;
@@ -24,7 +26,8 @@ export class Goomba {
     }
 
     draw(ctx: CanvasRenderingContext2D): void {
-        ctx.fillStyle = "brown"; // Placeholder color for Goomba
-        ctx.fillRect(this.x, this.y, this.width, this.height);
+        const goombaImage = createImage("assets/mario/creature.png");
+
+        ctx.drawImage(goombaImage, this.x, this.y, this.width, this.height);
     }
 }
