@@ -1,3 +1,4 @@
+import { Images } from "@/app/mario/page";
 import { GameEngine } from "../../engine/engine";
 import { Goomba } from "./enemy";
 import { handleInput } from "./input";
@@ -28,21 +29,17 @@ export function startGame(
     mario: Mario,
     levelData: LevelData,
     enemies: Goomba[],
-    createImage: (src: string) => HTMLImageElement,
-): void {
+    images: Images,
+) {
     const engine = new GameEngine(canvas, ctx);
-
-    const goombaImage = createImage("mario/creature.png");
-    const marioImage = createImage("mario/player.png");
 
     engine.start(() => {
         handleInput(mario);
-        renderLevel(ctx, canvas, mario.x, levelData, createImage);
-        drawMario(ctx, mario, marioImage);
-
+        renderLevel(ctx, canvas, mario.x, levelData, images);
+        drawMario(ctx, mario, images.mario);
         enemies.forEach((enemy) => {
             enemy.update();
-            enemy.draw(ctx, goombaImage);
+            enemy.draw(ctx, images.goomba);
         });
         renderHUD(ctx, canvas);
     });
