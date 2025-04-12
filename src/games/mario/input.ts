@@ -8,14 +8,15 @@ interface Mario {
 
 const keys: Record<string, boolean> = {};
 
-// Listen for keydown and keyup events
-window.addEventListener("keydown", (e: KeyboardEvent) => {
-    keys[e.code] = true;
-});
+export function initializeInputListeners(): void {
+    window.addEventListener("keydown", (e: KeyboardEvent) => {
+        keys[e.code] = true;
+    });
 
-window.addEventListener("keyup", (e: KeyboardEvent) => {
-    keys[e.code] = false;
-});
+    window.addEventListener("keyup", (e: KeyboardEvent) => {
+        keys[e.code] = false;
+    });
+}
 
 export function handleInput(mario: Mario): void {
     if (keys["ArrowLeft"] || keys["KeyA"]) {

@@ -1,5 +1,3 @@
-import { createImage } from "../../utils/imageUtils";
-
 export interface Coin {
     x: number;
     y: number;
@@ -9,19 +7,20 @@ export interface LevelData {
     coins: Coin[];
 }
 
-const groundImage = createImage("/mario/grass-block.png");
-const coinImage = createImage("/mario/coin.png");
-const marioImage = createImage("/mario/player.png");
-const mushroomImage = createImage("/mario/mushroom.png");
-const treeImage = createImage("/mario/tree.png");
-const backgroundImage = createImage("/mario/background.png");
-
 export function renderLevel(
     ctx: CanvasRenderingContext2D,
     canvas: HTMLCanvasElement,
     scrollOffset: number,
     levelData: LevelData,
+    createImage: (src: string) => HTMLImageElement,
 ): void {
+    const groundImage = createImage("/mario/grass-block.png");
+    const coinImage = createImage("/mario/coin.png");
+    const marioImage = createImage("/mario/player.png");
+    const mushroomImage = createImage("/mario/mushroom.png");
+    const treeImage = createImage("/mario/tree.png");
+    const backgroundImage = createImage("/mario/background.png");
+
     // Draw the background (sky)
     ctx.fillStyle = "#87CEEB"; // Sky blue
     ctx.fillRect(0, 0, canvas.width, canvas.height);

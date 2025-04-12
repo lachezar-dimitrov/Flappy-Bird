@@ -1,3 +1,5 @@
+"use client";
+
 import Game from "@/components/Game/Game";
 import AppStore from "@/store/AppStore";
 

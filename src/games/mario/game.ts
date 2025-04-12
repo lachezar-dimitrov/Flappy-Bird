@@ -28,16 +28,21 @@ export function startGame(
     mario: Mario,
     levelData: LevelData,
     enemies: Goomba[],
+    createImage: (src: string) => HTMLImageElement,
 ): void {
     const engine = new GameEngine(canvas, ctx);
 
+    const goombaImage = createImage("mario/creature.png");
+    const marioImage = createImage("mario/player.png");
+
     engine.start(() => {
         handleInput(mario);
-        renderLevel(ctx, canvas, mario.x, levelData);
-        drawMario(ctx, mario);
+        renderLevel(ctx, canvas, mario.x, levelData, createImage);
+        drawMario(ctx, mario, marioImage);
+
         enemies.forEach((enemy) => {
             enemy.update();
-            enemy.draw(ctx);
+            enemy.draw(ctx, goombaImage);
         });
         renderHUD(ctx, canvas);
     });

@@ -1,5 +1,4 @@
-import Box, { Props } from "../../../../components/Game/Board/Box/Box";
-import connect from "../../../StoreInjector";
+import Box from "../../../../components/Game/Board/Box/Box";
 
 // export default connect<Props>((store) => ({
 //     winnerSymbol: store.winnerSymbol,

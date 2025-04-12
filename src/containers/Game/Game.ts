@@ -1,5 +1,4 @@
-import Game, { GameProps } from "../../components/Game/Game";
-import connect from "../StoreInjector";
+import Game from "../../components/Game/Game";
 
 // export default connect<GameProps>((store) => ({
 //     draws: store.draws,

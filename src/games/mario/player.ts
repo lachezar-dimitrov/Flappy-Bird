@@ -1,5 +1,3 @@
-import { createImage } from "../../utils/imageUtils";
-
 export const MARIO_WIDTH = 30;
 export const MARIO_HEIGHT = 50;
 
@@ -23,7 +21,6 @@ export const mario: Mario = {
     onGround: false,
 };
 
-export function drawMario(ctx: CanvasRenderingContext2D, mario: Mario): void {
-    const marioImage = createImage("assets/mario/player.png");
+export function drawMario(ctx: CanvasRenderingContext2D, mario: Mario, marioImage: HTMLImageElement): void {
     ctx.drawImage(marioImage, mario.x, mario.y, mario.width, mario.height);
 }

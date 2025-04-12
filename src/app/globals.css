@@ -9,7 +9,6 @@ body {
 
 canvas {
     @apply border-4 border-[#2e2e2e] rounded-lg block mx-auto my-6 shadow-md;
-    background-image: url("/assets/Flappy_Bird_Background.png");
     background-size: contain;
     background-repeat: round;
     z-index: 1;

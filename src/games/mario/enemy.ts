@@ -1,5 +1,3 @@
-import { createImage } from "../../utils/imageUtils";
-
 export class Goomba {
     x: number;
     y: number;
@@ -25,9 +23,7 @@ export class Goomba {
         }
     }
 
-    draw(ctx: CanvasRenderingContext2D): void {
-        const goombaImage = createImage("assets/mario/creature.png");
-
+    draw(ctx: CanvasRenderingContext2D, goombaImage: HTMLImageElement): void {
         ctx.drawImage(goombaImage, this.x, this.y, this.width, this.height);
     }
 }

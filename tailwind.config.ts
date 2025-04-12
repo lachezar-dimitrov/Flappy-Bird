@@ -14,9 +14,6 @@ const config: Config = {
             margin: {
                 "6": "1.5rem",
             },
-            backgroundImage: {
-                "flappy-bird": "url('/assets/Flappy_Bird_Background.png')",
-            },
             backgroundSize: {
                 contain: "contain",
                 "repeat-round": "repeat-round",
