@@ -1,0 +1,35 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Migrated styles from root style.css */
+body {
+    @apply bg-gradient-to-r from-[#73c8a9] to-[#373b44] font-['Press_Start_2P'];
+}
+
+canvas {
+    @apply border-4 border-[#2e2e2e] rounded-lg block mx-auto my-6 shadow-md;
+    background-size: contain;
+    background-repeat: round;
+    z-index: 1;
+}
+
+.backdrop-blur {
+    @apply filter blur-sm;
+}
+
+#end-menu {
+    @apply hidden mx-auto my-12 w-48 p-5 text-center bg-white rounded shadow-md absolute left-1/2 transform -translate-x-1/2 translate-y-1/2 z-[1000];
+}
+
+#score-display {
+    @apply text-white text-2xl text-center drop-shadow-md;
+}
+
+button {
+    @apply bg-[#2e2e2e] border-none rounded text-white cursor-pointer text-lg px-6 py-3 shadow-md transition-all ease-in-out;
+}
+
+button:hover {
+    @apply bg-[#333] -translate-y-0.5 shadow-sm;
+}
