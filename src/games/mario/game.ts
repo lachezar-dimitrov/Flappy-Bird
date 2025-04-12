@@ -32,9 +32,13 @@ export function startGame(
         // Handle input
         handleInput(mario);
 
-        // Update scroll offset to move the game in the right direction
+        // Update scroll offset based on Mario's position without moving Mario
         if (mario.x > canvas.width / 2) {
-            engine.updateScrollOffset(mario.speed);
+            engine.updateScrollOffset(mario.x - canvas.width / 2);
+            mario.x = canvas.width / 2; // Keep Mario at the center of the screen
+        } else if (mario.x < canvas.width / 2 && engine.scrollOffset > 0) {
+            engine.updateScrollOffset(mario.x - canvas.width / 2);
+            mario.x = canvas.width / 2; // Keep Mario at the center of the screen
         }
 
         // Render level, enemies, and Mario
