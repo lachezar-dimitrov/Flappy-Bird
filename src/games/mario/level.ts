@@ -9,11 +9,12 @@ export interface LevelData {
     coins: Coin[];
 }
 
-const groundImage = createImage("assets/mario/grass-block.png");
-const coinImage = createImage("assets/mario/coin.png");
-const marioImage = createImage("assets/mario/player.png");
-const mushroomImage = createImage("assets/mario/mushroom.png");
-const treeImage = createImage("assets/mario/tree.png");
+const groundImage = createImage("/mario/grass-block.png");
+const coinImage = createImage("/mario/coin.png");
+const marioImage = createImage("/mario/player.png");
+const mushroomImage = createImage("/mario/mushroom.png");
+const treeImage = createImage("/mario/tree.png");
+const backgroundImage = createImage("/mario/background.png");
 
 export function renderLevel(
     ctx: CanvasRenderingContext2D,
@@ -26,7 +27,6 @@ export function renderLevel(
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 
     // Parallax scrolling background
-    const backgroundImage = createImage("assets/mario/background.png");
     backgroundImage.onload = () => {
         const aspectRatio = backgroundImage.width / backgroundImage.height;
         const targetHeight = canvas.width / aspectRatio;
