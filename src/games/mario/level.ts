@@ -11,7 +11,7 @@ export function renderLevel(
     ctx: CanvasRenderingContext2D,
     canvas: HTMLCanvasElement,
     scrollOffset: number,
-    levelData: LevelData
+    levelData: LevelData,
 ): void {
     // Draw the background (sky)
     ctx.fillStyle = "#87CEEB"; // Sky blue
@@ -19,15 +19,14 @@ export function renderLevel(
 
     // Parallax scrolling background
     const backgroundImage = new Image();
-    backgroundImage.src = "assets/mario_background.png"; // Placeholder for retro pixel art background
-    ctx.drawImage(backgroundImage, -scrollOffset % canvas.width, 0, canvas.width, canvas.height);
-    ctx.drawImage(
-        backgroundImage,
-        canvas.width - (scrollOffset % canvas.width),
-        0,
-        canvas.width,
-        canvas.height
-    );
+    backgroundImage.src = "assets/mario/background.png"; // Placeholder for retro pixel art background
+    // Ensure the background image maintains the correct aspect ratio
+    backgroundImage.onload = () => {
+        const aspectRatio = backgroundImage.width / backgroundImage.height;
+        const targetHeight = canvas.width / aspectRatio;
+        ctx.drawImage(backgroundImage, -scrollOffset % canvas.width, 0, canvas.width, targetHeight);
+        ctx.drawImage(backgroundImage, canvas.width - (scrollOffset % canvas.width), 0, canvas.width, targetHeight);
+    };
 
     // Draw the ground
     ctx.fillStyle = "#654321"; // Brown color for the ground

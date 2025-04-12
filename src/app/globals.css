@@ -15,12 +15,6 @@ canvas {
     z-index: 1;
 }
 
-@media (min-width: 600px) {
-    canvas {
-        @apply w-1/2 h-[75vh];
-    }
-}
-
 .backdrop-blur {
     @apply filter blur-sm;
 }
@@ -39,8 +33,4 @@ button {
 
 button:hover {
     @apply bg-[#333] -translate-y-0.5 shadow-sm;
-}
-
-#game-container {
-    @apply flex justify-center items-center w-[800px] h-[400px] mx-auto my-12 border-2 border-black bg-[#5c94fc];
 }

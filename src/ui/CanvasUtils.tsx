@@ -8,15 +8,8 @@ type CanvasProps = {
     id?: string;
 };
 
-export const Canvas: FC<CanvasProps> = ({ width = 800, height = 400, id }) => {
-    return (
-        <canvas
-            id={id}
-            width={width}
-            height={height}
-            className="border-4 border-[#2e2e2e] rounded-lg block mx-auto my-6 shadow-md bg-[url('/assets/Flappy_Bird_Background.png')] bg-contain bg-repeat-round z-[1]"
-        ></canvas>
-    );
+export const Canvas: FC<CanvasProps> = ({ width = 1200, height = 600, id }) => {
+    return <canvas id={id} width={width} height={height} className="block mx-auto my-6 shadow-md"></canvas>;
 };
 
 type ClearContainerProps = {

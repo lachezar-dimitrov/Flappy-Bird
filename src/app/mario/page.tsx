@@ -1,26 +1,21 @@
 "use client";
 
 import React, { useEffect } from "react";
+import { Goomba } from "../../games/mario/enemy";
+import { startGame } from "../../games/mario/game";
+import { LevelData } from "../../games/mario/level";
+import { mario } from "../../games/mario/player";
 import { Canvas } from "../../ui/CanvasUtils";
 
-// Define a game loop specific to the Mario game
-function gameLoop(ctx: CanvasRenderingContext2D, canvas: HTMLCanvasElement) {
-    // Clear the canvas
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
+const levelData: LevelData = {
+    coins: [
+        { x: 100, y: 200 },
+        { x: 300, y: 150 },
+        { x: 500, y: 100 },
+    ],
+};
 
-    // Draw the background
-    ctx.fillStyle = "#87CEEB"; // Sky blue
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-    // Draw ground
-    ctx.fillStyle = "#654321"; // Brown color for ground
-    ctx.fillRect(0, canvas.height - 50, canvas.width, 50);
-
-    // Add more game logic here (e.g., drawing Mario, handling movement, etc.)
-
-    // Request the next frame
-    requestAnimationFrame(() => gameLoop(ctx, canvas));
-}
+const enemies: Goomba[] = [new Goomba(400, 350, 30, 30, -2), new Goomba(600, 350, 30, 30, -3)];
 
 const MarioGame: React.FC = () => {
     useEffect(() => {
@@ -28,15 +23,11 @@ const MarioGame: React.FC = () => {
         const ctx = canvas.getContext("2d");
 
         if (ctx) {
-            gameLoop(ctx, canvas);
+            startGame(ctx, canvas, mario, levelData, enemies);
         }
     }, []);
 
-    return (
-        <div id="game-container">
-            <Canvas id="mario-canvas" width={800} height={400} />
-        </div>
-    );
+    return <Canvas id="mario-canvas" />;
 };
 
 export default MarioGame;
