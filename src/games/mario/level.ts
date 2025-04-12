@@ -9,6 +9,10 @@ export interface LevelData {
     coins: Coin[];
 }
 
+function getRandomValues(min: number, max: number): number {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
 export function renderLevel(
     ctx: CanvasRenderingContext2D,
     canvas: HTMLCanvasElement,
@@ -39,16 +43,18 @@ export function renderLevel(
 
     // Draw ground tiles
     for (let x = 0; x < canvas.width; x += 50) {
-        ctx.drawImage(groundImage, x - bgOffset, canvas.height - 50, 50, 50);
+        ctx.drawImage(groundImage, x - bgOffset, canvas.height - 60, 100, 80);
     }
 
     // Draw coins
     for (const coin of levelData.coins) {
-        ctx.drawImage(coinImage, coin.x - scrollOffset, coin.y, 20, 20);
+        ctx.drawImage(coinImage, coin.x - scrollOffset, coin.y, 100, 100); // Increased size to 40x40
     }
 
+    ctx.drawImage(mushroomImage, 180 - scrollOffset, canvas.height - 100, 80, 80);
+    ctx.drawImage(mushroomImage, 480 - scrollOffset, canvas.height - 100, 80, 80);
+    ctx.drawImage(mushroomImage, 1520 - scrollOffset, canvas.height - 100, 80, 80);
+
     // Draw static assets
-    ctx.drawImage(marioImage, 50, canvas.height - 150, 50, 50);
-    ctx.drawImage(mushroomImage, 200 - scrollOffset, canvas.height - 100, 40, 40);
-    ctx.drawImage(treeImage, 400 - scrollOffset, canvas.height - 150, 80, 100);
+    ctx.drawImage(treeImage, 500 - scrollOffset, canvas.height - 370, 320, 400);
 }

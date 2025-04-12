@@ -2,13 +2,18 @@
 
 import { FC, ReactNode, useEffect, useRef } from "react";
 
+export const canvasDimensions = {
+    width: 1600,
+    height: 800,
+} as const;
+
 type CanvasProps = {
     width?: number;
     height?: number;
     id?: string;
 };
 
-export const Canvas: FC<CanvasProps> = ({ width = 1200, height = 600, id }) => {
+export const Canvas: FC<CanvasProps> = ({ width = canvasDimensions.width, height = canvasDimensions.height, id }) => {
     return <canvas id={id} width={width} height={height} className="block mx-auto my-6 shadow-md"></canvas>;
 };
 

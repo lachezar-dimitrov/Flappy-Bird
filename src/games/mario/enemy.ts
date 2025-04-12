@@ -1,3 +1,5 @@
+import { canvasDimensions } from "@/ui/CanvasUtils";
+
 export class Goomba {
     x: number;
     y: number;
@@ -18,7 +20,7 @@ export class Goomba {
         this.x += this.speed;
 
         // Reverse direction if it hits the canvas boundaries
-        if (this.x < 0 || this.x + this.width > 800) {
+        if (this.x < 0 || this.x + this.width > canvasDimensions.width) {
             this.speed *= -1;
         }
     }

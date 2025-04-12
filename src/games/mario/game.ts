@@ -1,7 +1,7 @@
 import { Images } from "@/app/mario/page";
 import { GameEngine } from "../../engine/engine";
 import { Goomba } from "./enemy";
-import { handleInput } from "./input";
+import { handleInput, initializeInputListeners } from "./input";
 import { LevelData, renderLevel } from "./level";
 import { drawMario, Mario } from "./player";
 
@@ -31,16 +31,44 @@ export function startGame(
     enemies: Goomba[],
     images: Images,
 ) {
-    const engine = new GameEngine(canvas, ctx);
+    const GRAVITY = 0.5;
+    const FLOOR_Y = canvas.height - mario.height; // Assuming the ground is at the bottom of the canvas
 
-    engine.start(() => {
+    function gameLoop() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        // Apply gravity
+        if (!mario.onGround) {
+            mario.velocityY += GRAVITY;
+        }
+        mario.y += mario.velocityY;
+
+        // Check for ground collision
+        if (mario.y >= FLOOR_Y) {
+            mario.y = FLOOR_Y;
+            mario.velocityY = 0;
+            mario.onGround = true;
+        } else {
+            mario.onGround = false;
+        }
+
+        // Handle input
         handleInput(mario);
-        renderLevel(ctx, canvas, mario.x, levelData, images);
-        drawMario(ctx, mario, images.mario);
+
+        // Render level, enemies, and Mario
+        renderLevel(ctx, canvas, 0, levelData, images);
         enemies.forEach((enemy) => {
             enemy.update();
             enemy.draw(ctx, images.goomba);
         });
+        drawMario(ctx, mario, images.mario);
+
+        // Render HUD
         renderHUD(ctx, canvas);
-    });
+
+        requestAnimationFrame(gameLoop);
+    }
+
+    initializeInputListeners();
+    gameLoop();
 }

@@ -49,13 +49,13 @@ class AssetLoader {
 export default function MarioPage() {
     const levelData: LevelData = {
         coins: [
-            { x: 100, y: 200 },
-            { x: 300, y: 150 },
-            { x: 500, y: 100 },
+            { x: 200, y: 600 },
+            { x: 900, y: 550 },
+            { x: 1400, y: 700 },
         ],
     };
 
-    const enemies: Goomba[] = [new Goomba(400, 350, 30, 30, -2), new Goomba(600, 350, 30, 30, -3)];
+    const enemies: Goomba[] = [new Goomba(400, 650, 60, 60, -2), new Goomba(600, 600, 60, 60, -3)];
 
     useEffect(() => {
         const initializeGame = async () => {
