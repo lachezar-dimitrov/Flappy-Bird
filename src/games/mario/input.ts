@@ -8,6 +8,12 @@ interface Mario {
 
 const keys: Record<string, boolean> = {};
 
+const DEFAULT_KEYS = {
+    left: ["ArrowLeft", "KeyA"],
+    right: ["ArrowRight", "KeyD"],
+    jump: ["Space", "ArrowUp", "KeyW"],
+};
+
 export function initializeInputListeners(): void {
     window.addEventListener("keydown", (e: KeyboardEvent) => {
         keys[e.code] = true;
@@ -18,14 +24,14 @@ export function initializeInputListeners(): void {
     });
 }
 
-export function handleInput(mario: Mario): void {
-    if (keys["ArrowLeft"] || keys["KeyA"]) {
+export function handleInput(mario: Mario, keysConfig = DEFAULT_KEYS): void {
+    if (keysConfig.left.some((key) => keys[key])) {
         mario.x -= mario.speed;
     }
-    if (keys["ArrowRight"] || keys["KeyD"]) {
+    if (keysConfig.right.some((key) => keys[key])) {
         mario.x += mario.speed;
     }
-    if ((keys["Space"] || keys["ArrowUp"] || keys["KeyW"]) && mario.onGround) {
+    if (keysConfig.jump.some((key) => keys[key]) && mario.onGround) {
         mario.velocityY = -10; // Jump velocity
         mario.onGround = false;
     }

@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import { Goomba } from "../../games/mario/enemy";
 import { startGame } from "../../games/mario/game";
 import { LevelData } from "../../games/mario/level";
-import { mario } from "../../games/mario/player";
+import { player } from "../../games/mario/player";
 import { Canvas } from "../../ui/canvas";
 import { AssetLoader } from "@/services/asset-loader";
 
@@ -47,12 +47,12 @@ export default function MarioPage() {
                     tree: "/mario/tree.png",
                     background: "/mario/background.png",
                     goomba: "/mario/creature.png",
-                    mario: "/mario/player.png",
+                    mario: "/mario/female-player.png",
                 },
                 () => new Image(),
             );
 
-            startGame(ctx, canvas, mario, levelData, enemies, images);
+            startGame(ctx, canvas, player, levelData, enemies, images);
         };
 
         void initializeGame();

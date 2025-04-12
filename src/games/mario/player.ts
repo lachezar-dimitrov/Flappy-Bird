@@ -1,7 +1,7 @@
-export const MARIO_WIDTH = 100;
-export const MARIO_HEIGHT = 100;
+export const PLAYER_WIDTH = 100;
+export const PLAYER_HEIGHT = 100;
 
-export interface Mario {
+export interface Player {
     x: number;
     y: number;
     width: number;
@@ -11,16 +11,16 @@ export interface Mario {
     onGround: boolean;
 }
 
-export const mario: Mario = {
+export const player: Player = {
     x: 50,
     y: 0, // Initial position, will be adjusted by gravity
-    width: MARIO_WIDTH,
-    height: MARIO_HEIGHT,
+    width: PLAYER_WIDTH,
+    height: PLAYER_HEIGHT,
     velocityY: 0,
     speed: 5,
     onGround: false,
 };
 
-export function drawMario(ctx: CanvasRenderingContext2D, mario: Mario, marioImage: HTMLImageElement): void {
-    ctx.drawImage(marioImage, mario.x, mario.y, mario.width, mario.height);
+export function drawPlayer(ctx: CanvasRenderingContext2D, player: Player, image: HTMLImageElement): void {
+    ctx.drawImage(image, player.x, player.y, player.width, player.height);
 }
