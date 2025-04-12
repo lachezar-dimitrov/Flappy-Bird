@@ -5,7 +5,7 @@ import { Goomba } from "../../games/mario/enemy";
 import { startGame } from "../../games/mario/game";
 import { LevelData } from "../../games/mario/level";
 import { mario } from "../../games/mario/player";
-import { Canvas } from "../../ui/CanvasUtils";
+import { Canvas } from "../../ui/canvas";
 
 export type Images = {
     ground: HTMLImageElement;

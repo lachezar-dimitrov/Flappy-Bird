@@ -1,4 +1,4 @@
-import { canvasDimensions } from "@/ui/CanvasUtils";
+import { canvasDimensions } from "@/ui/canvas";
 
 export class Goomba {
     x: number;

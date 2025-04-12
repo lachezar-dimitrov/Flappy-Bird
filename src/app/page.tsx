@@ -1,7 +1,9 @@
 "use client";
 
-import { Button, Container, Heading } from "@/ui/UIComponents";
+import { Heading } from "@/ui/heading";
+import { Button } from "@/ui/button";
 import { useRouter } from "next/navigation";
+import { Container } from "@/ui/container";
 
 export default function Home() {
     const router = useRouter();
@@ -13,9 +15,7 @@ export default function Home() {
     return (
         <main className="flex min-h-screen flex-col items-center justify-between p-24 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 text-white">
             <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">
-                <Heading level={1} className="text-4xl font-bold mb-8 text-center">
-                    Welcome to the Ultimate Game Hub!
-                </Heading>
+                <Heading className="text-4xl font-bold mb-8 text-center">Welcome to the Ultimate Game Hub!</Heading>
             </div>
 
             <Container>
