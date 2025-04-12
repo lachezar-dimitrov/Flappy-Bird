@@ -28,7 +28,10 @@ class AssetLoader {
 
         await new Promise<void>((resolve, reject) => {
             img.onload = () => resolve();
-            img.onerror = () => reject(`Failed to load image: ${src}`);
+            img.onerror = () => {
+                console.error(`Failed to load image: ${src}`);
+                reject(`Failed to load image: ${src}`);
+            };
         });
 
         this.cache.set(src, img);
@@ -59,16 +62,19 @@ export default function MarioPage() {
             const canvas = document.getElementById("mario-canvas") as HTMLCanvasElement;
             const ctx = canvas?.getContext("2d");
 
-            if (!ctx) return;
+            if (!ctx) {
+                console.error("Failed to get canvas context");
+                return;
+            }
 
             const images = await AssetLoader.loadAll({
-                ground: "mario/ground.png",
-                coin: "mario/coin.png",
-                mushroom: "mario/mushroom.png",
-                tree: "mario/tree.png",
-                background: "mario/background.png",
-                goomba: "mario/creature.png",
-                mario: "mario/player.png",
+                ground: "/mario/ground.png",
+                coin: "/mario/coin.png",
+                mushroom: "/mario/mushroom.png",
+                tree: "/mario/tree.png",
+                background: "/mario/background.png",
+                goomba: "/mario/creature.png",
+                mario: "/mario/player.png",
             });
 
             startGame(ctx, canvas, mario, levelData, enemies, images);
